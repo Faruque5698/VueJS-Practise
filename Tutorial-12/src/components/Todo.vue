@@ -18,11 +18,11 @@ export default {
 
     }
   },methods: {
-    addTask() {
+    addTask(task) {
       let taskList = {
         id: this.tasks.length + 1,
-        title: this.title,
-        description: this.description
+        title: task.title,
+        description: task.description
       };
       this.tasks.push(taskList);
 
