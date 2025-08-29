@@ -2,12 +2,15 @@
 import InputField from "@/components/InputField.vue";
 import InputFieldV2 from "@/components/InputFieldV2.vue";
 import InputFieldV3 from "@/components/InputFieldV3.vue";
+import Footer from "@/components/Footer.vue";
+import {computed} from "vue";
 
 export default {
   components: {
     InputField,
     InputFieldV2,
-    InputFieldV3
+    InputFieldV3,
+    Footer
   },
   data() {
     return {
@@ -16,12 +19,24 @@ export default {
       name:'',
       email:'',
       password:'',
-      textMessage:''
+      textMessage:'Resdfasdf'
 
     }
   },
   updated() {
-    this.textMessage = 'My name is ' + this.name + ', email is ' + this.email + ' and password is ' + this.password;
+    // this.textMessage = 'My name is ' + this.name + ', email is ' + this.email + ' and password is ' + this.password;
+  },
+  // provide:{
+  //   message:'Hello from App.vue'
+  // }
+  provide(){
+    return {
+      message: computed(() => this.textMessage)
+    }
+  },methods:{
+    updateData(){
+      this.textMessage = 'New Message'
+    }
   }
 };
 </script>
@@ -39,9 +54,14 @@ export default {
 
 <!--  <InputFieldV2 label-value="Password" v-model="msgV2"  />-->
 
-  <InputFieldV3 v-model:nameVal="name" v-model:emailVal="email" v-model:passwordVal="password" />
-  <br><br>
-  {{ textMessage }}
+<!--  <InputFieldV3 v-model:nameVal="name" v-model:emailVal="email" v-model:passwordVal="password" />-->
+<!--  <br><br>-->
+<!--  {{ textMessage }}-->
+  <button @click="updateData">Change Message</button>
+  {{textMessage}}
+  <br> <br>
+
+  <Footer/>
 
 </template>
 
